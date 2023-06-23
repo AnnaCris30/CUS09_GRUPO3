@@ -119,13 +119,17 @@
                         {% for indice, dato in datos %}
                         <tr>
                             <td>{{ indice }}</td>
-                            <td>{{ dato[1] or 'null' }}</td>
+                            <td>{{ dato[0] or 'null' }}</td>
                             <td>{{ dato[3] or 'null' }}</td>
                             <td>{{ dato[4] or 'null' }}</td>
                             <td>{{ dato[5] or 'null' }}</td>
                             <td>{{ dato[6] or 'null' }}</td>
                             <td>{{ dato[7] or 'null' }}</td>
                             <td>{{ dato[8] or 'null' }}</td>
+                            <td>
+                                <a href="/edit/{{dato.0}}">Edit</a>
+                                <a href="/delete/{{dato.0}}">Delete</a>
+                            </td>  
                         </tr>
                          {% endfor %}
                     </tbody>

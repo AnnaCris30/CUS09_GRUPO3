@@ -5,6 +5,7 @@ class TipoMoneda(db.Model):
     descripcion = db.Column(db.String(10))
     etiqueta = db.Column(db.String(4))
     
-    def __init__(self, id_banco, descripcion):
-        self.id_banco = id_banco
+    def __init__(self, id_tipo_moneda, descripcion, etiqueta):
+        self.id_tipo_moneda = id_tipo_moneda
         self.descripcion = descripcion
+        self.etiqueta = etiqueta

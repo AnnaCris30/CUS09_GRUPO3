@@ -1,5 +1,5 @@
 from marshmallow import Schema, fields
 
-class TIPO_AUTORIZACIONSchema(Schema):
+class TipoAutorizacionSchema(Schema):
     id_tipo_autorizacion = fields.Integer()
     descripcion = fields.String()

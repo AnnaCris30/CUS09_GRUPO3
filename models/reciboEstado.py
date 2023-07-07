@@ -1,6 +1,6 @@
 from utils.db import db
 
-class TipoDocumento(db.Model):
+class ReciboEstado(db.Model):
     id_recibo_estado = db.Column(db.Integer, primary_key=True)
     descripcion = db.Column(db.String(15))
 

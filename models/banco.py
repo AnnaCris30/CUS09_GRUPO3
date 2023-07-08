@@ -1,4 +1,4 @@
-from utils.db import db
+from utils.db import db tako
 
 class Banco(db.Model):
     id_banco = db.Column(db.Integer, primary_key=True)

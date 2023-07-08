@@ -1,12 +1,12 @@
-{%extends 'base-user.html'%}
-{%block title%}RECAUDACIONES{%endblock%}
-{%block header%}
+{% extends 'base-user.html' %}
+{% block title %}RECAUDACIONES{% endblock %}
+{% block header %}
 
-{%endblock%}
-{%block content%}
-<link rel="stylesheet" href="{{url_for('static',filename='css/recaudacion.css')}}">
+{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/recaudacion.css') }}">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+<link href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 <!--Formulario-->
 <form class="container-form">
@@ -24,8 +24,7 @@
             class="form-control"
             required >
         </div> 
-        <!-- Botones de Buscar -->       
-                 
+               
         <div class="textInput">
             <label class="input__lbl">
                 <span class="txt-lbl">Nombre </span>
@@ -84,7 +83,48 @@
     <div class="form-apartado" id="info_recaudacion">
         <div class="apartado-titulo">INFORMACIÓN DE RECAUDACION</div>        
     </div>
-
 </form>
 
-{%endblock%}
+<!-- Tabla de Cotizaciones Pendientes -->
+<div class="table-container d-flex justify-content-center">
+    <table id="tabla-recaudaciones" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Nro recaudacion</th>
+                <th>Fecha</th>
+                <th>Nombre</th>
+                <th>Predio</th>
+                <th>Importe</th>
+                <th>Estado</th>
+                <th>Observacion</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ 'null' }}</td>
+                <td>{{ 'null' }}</td>
+                <td>{{ 'null' }}</td>
+                <td>{{ 'null' }}</td>
+                <td>{{ 'null' }}</td>
+                <td>{{ 'null' }}</td>
+                <td>{{ 'null' }}</td>
+                <td>{{ 'null' }}</td>
+                <td>{{ 'null' }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#tabla-recaudaciones').DataTable();
+    });
+</script>
+{% endblock %}

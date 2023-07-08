@@ -12,7 +12,7 @@
     height: 100%;
     max-width: 500px;
     border: none;
-    background-color: #292929;
+    background-color: #ffffff;
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -25,7 +25,7 @@
   
   .apartado-titulo {
     font-size: 24px;
-    color: #ffffff;
+    color: #000000;
     text-align: center;
     margin-bottom: 20px;
   }
@@ -37,7 +37,7 @@
   .textInput label {
     display: block;
     font-size: 16px;
-    color: #ffffff;
+    color: #000000;
     margin-bottom: 5px;
   }
   
@@ -49,8 +49,8 @@
     border: 1px solid #ffffff;
     border-radius: 5px;
     transition: border-color 0.3s ease-in-out;
-    background-color: transparent;
-    color: #ffffff;
+    background-color: #bec1c2;
+    color: #000000;
   }
   
   .textInput input:focus {
@@ -59,7 +59,7 @@
   }
   
   .textInput input[readonly] {
-    background-color: #444444;
+    background-color: #7d7676;
   }
   
   .button-container {
@@ -97,7 +97,7 @@
   height: auto;
   }
     
-  .fondo {
+  /*.fondo {
     background: url('/static/img/fondo-desenfoque.jpg');
     background-size: 100vw 100vh;
     background-repeat: no-repeat;

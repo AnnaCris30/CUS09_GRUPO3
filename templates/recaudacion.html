@@ -1,3 +1,4 @@
+
 {% extends 'base-user.html' %}
 {% block title %}RECAUDACIONES{% endblock %}
 {% block header %}
@@ -61,7 +62,8 @@
 
     <!--PREDIO-->
     <div class="form-apartado" id="info_predio">
-        <div class="apartado-titulo">INFORMACIÓN DEL PREDIO</div>        
+        <div class="apartado-titulo">INFORMACIÓN DEL PREDIO</div> 
+
         <div class="textInput">
             <label class="input__lbl">
                 <span class="txt-lbl">Nombre: </span>
@@ -71,21 +73,156 @@
             type="text"
             class="form-control"
             required >
-        </div> 
+        </div>
+              
+        <div class="textInput">
+            <label class="input__lbl">
+                <span class="txt-lbl">Direccion: </span>
+            </label>
+            <input 
+            name=""
+            type="text"
+            class="form-control"
+            required >
+        </div>
+
+        <div class="textInput">
+            <label class="input__lbl">
+                <span class="txt-lbl">Tipo de Predio: </span>
+            </label>
+            <input 
+            name=""
+            type="text"
+            class="form-control"
+            required >
+        </div>
+
+        <div class="textInput">
+            <label class="input__lbl">
+                <span class="txt-lbl">RUC: </span>
+            </label>
+            <input 
+            name=""
+            type="text"
+            class="form-control"
+            required >
+        </div>
+
+        <div class="textInput">
+            <label class="input__lbl">
+                <span class="txt-lbl">Nro cuenta predio: </span>
+            </label>
+            <input type="text" name=" " required readonly
+            value="">
+        </div>
+        
+        <div class="textInput">
+            <label class="input__lbl">
+                <span class="txt-lbl">Tipo de autorizacion: </span>
+            </label>
+            <input type="text" name=" " required readonly
+            value="">
+        </div>
+
+        <div class="textInput">
+            <label class="input__lbl">
+                <span class="txt-lbl">Estado: </span>
+            </label>
+            <input type="text" name=" " required readonly
+            value="">
+        </div>
+
     </div>
+    
     <!--RECIBO-->
     <div class="form-apartado" id="info_recibo">
         <div class="apartado-titulo">INFORMACIÓN DEL RECIBO</div>
-               
+        
+        <div class="textInput">
+            <label class="input__lbl">
+                <span class="txt-lbl">Nro de recibo: </span>
+            </label>
+            <input 
+            name=""
+            type="text"
+            class="form-control"
+            required >
+        </div>
+
+        <div class="textInput">
+            <label class="input__lbl">
+                <span class="txt-lbl">Estado de recibo: </span>
+            </label>
+            <input type="text" name=" " required readonly
+            value="">
+        </div>
+
+        <div class="textInput">
+            <label class="input__lbl">
+                <span class="txt-lbl">Importe: </span>
+            </label>
+            <input type="text" name=" " required readonly
+            value="">
+        </div>
+
     </div>
 
     <!--RECAUDACION-->
     <div class="form-apartado" id="info_recaudacion">
-        <div class="apartado-titulo">INFORMACIÓN DE RECAUDACION</div>        
+        <div class="apartado-titulo">INFORMACIÓN DE RECAUDACION</div>
+        
+        <div class="textInput">
+            <label class="input__lbl">
+                <span class="txt-lbl">Fecha: </span>
+            </label>
+            <input 
+            name=""
+            type="text"
+            class="form-control"
+            required >
+        </div>
+
+        <div class="textInput">
+            <label class="input__lbl">
+                <span class="txt-lbl">Tipo de Moneda: </span>
+            </label>
+            <input type="text" name=" " required readonly
+            value="">
+        </div>
+
+        <div class="textInput">
+            <label class="input__lbl">
+                <span class="txt-lbl">Importe: </span>
+            </label>
+            <input type="text" name=" " required readonly
+            value="">
+        </div>
+
+        <div class="textInput">
+            <label class="input__lbl">
+                <span class="txt-lbl">Estado de recaudacion: </span>
+            </label>
+            <input 
+            name=""
+            type="text"
+            class="form-control"
+            required >
+        </div>
+
+        <div class="textInput">
+            <label class="input__lbl">
+                <span class="txt-lbl">Observacion: </span>
+            </label>
+            <input 
+            name=""
+            type="text"
+            class="form-control"
+            required >
+        </div>
     </div>
 </form>
 
-<!-- Tabla de Cotizaciones Pendientes -->
+<!-- Tabla de recaudaciones Pendientes -->
 <div class="table-container d-flex justify-content-center">
     <table id="tabla-recaudaciones" class="table table-striped table-bordered" style="width:100%">
         <thead>

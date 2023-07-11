@@ -4,7 +4,7 @@ from schemas.predioSchema import PredioSchema
 from schemas.estadoSchema import EstadoSchema
 from schemas.tipoAutorizacionSchema import TipoAutorizacionSchema
 from schemas.tipoMonedaSchema import TipoMonedaSchema
-
+from schemas.bancoSchema import BancoSchema
 class CuentaPredioSchema(Schema):
 
         id_cuenta_predio  = fields.Integer()
@@ -23,4 +23,5 @@ class CuentaPredioSchema(Schema):
         predio = fields.Nested(PredioSchema)
         estado = fields.Nested(EstadoSchema)
         tipo_autorizacion = fields.Nested(TipoAutorizacionSchema)
+        banco = fields.Nested(BancoSchema)
         tipo_moneda = fields.Nested(TipoMonedaSchema)

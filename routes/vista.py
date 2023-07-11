@@ -12,7 +12,7 @@ from models.persona import Persona
 from models.predio import Predio
 from models.recaudacion import Recaudacion
 from models.reciboEstado import ReciboEstado
-from models.TIPO_AUTORIZACION import TipoAutorizacion
+from models.tipoAutorizacion import TipoAutorizacion
 from models.tipoDocumento import TipoDocumento
 from models.tipoMoneda import TipoMoneda
 from models.tipoPredio import TipoPredio

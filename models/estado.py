@@ -1,5 +1,5 @@
 from utils.db import db
-class TipoPredio(db.Model):
+class Estado(db.Model):
     id_estado = db.Column(db.Integer, primary_key=True)
     descripcion= db.Column(db.String(255))
 

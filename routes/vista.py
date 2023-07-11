@@ -1,21 +1,22 @@
 
 from flask import Blueprint, render_template as rt, flash, redirect, url_for, request, jsonify
-from models.banco import banco
+from models.banco import Banco
 from models.casa import Casa
-from models.casaEstado import casaEstado
+from models.cuenta import Cuenta
+from models.casaEstado import CasaEstado
 from models.cuentaPredio import CuentaPredio
-from models.estado import estado
-from models.estadoRecaudacion import estadoRecaudacion
-from models.mantRecibo import mantRecibo
-from models.persona import persona
-from models.predio import predio
-from models.recaudacion import recaudacion
-from models.reciboEstado import reciboEstado
-from models.tipoAutorizacion import tipoAutorizacion
-from models.tipoDocumento import tipoDocumento
-from models.tipoMoneda import tipoMoneda
-from models.tipoPredio import tipoPredio
-from models.ubigeo import ubigeo
+from models.estado import Estado
+from models.estadoRecaudacion import EstadoRecaudacion
+from models.mantRecibo import MantRecibo
+from models.persona import Persona
+from models.predio import Predio
+from models.recaudacion import Recaudacion
+from models.reciboEstado import ReciboEstado
+from models.TIPO_AUTORIZACION import TipoAutorizacion
+from models.tipoDocumento import TipoDocumento
+from models.tipoMoneda import TipoMoneda
+from models.tipoPredio import TipoPredio
+from models.ubigeo import Ubigeo
 
 from utils.db import db
 from utils.json import model_to_dict
@@ -24,23 +25,23 @@ bp = Blueprint('vista', __name__, url_prefix="/vista")
 
 @bp.route('/')
 def vista(): #esta función debe coincidir con el url_for del html (base)
-    banco =banco.query.all()
-    casa =casa.query.all()
-    casaEstado=casaEstado.all()
-    cuenta = cuenta.query.all()
-    cuentaPredio=cuentaPredio.query.all()
-    estado =estado.query.all()
-    estadoRecaudacion =estadoRecaudacion.query.all()
-    mantRecibo =mantRecibo.query.all()
-    persona =persona.query.all()
-    predio =predio.query.all()
-    recaudacion =recaudacion.query.all()
-    reciboEstado =reciboEstado.query.all()
-    tipoAutorizacion =tipoAutorizacion.query.all()
-    tipoDocumento =tipoDocumento.query.all()
-    tipoMoneda =tipoMoneda.query.all()
-    tipoPredio =tipoPredio.query.all()
-    ubigeo =ubigeo.query.all()
+    banco =Banco.query.all()
+    casa =Casa.query.all()
+    casaEstado=CasaEstado.all()
+    cuenta = Cuenta.query.all()
+    cuentaPredio=CuentaPredio.query.all()
+    estado =Estado.query.all()
+    estadoRecaudacion =EstadoRecaudacion.query.all()
+    mantRecibo =MantRecibo.query.all()
+    persona =Persona.query.all()
+    predio =Predio.query.all()
+    recaudacion =Recaudacion.query.all()
+    reciboEstado =ReciboEstado.query.all()
+    tipoAutorizacion =TipoAutorizacion.query.all()
+    tipoDocumento =TipoDocumento.query.all()
+    tipoMoneda =TipoMoneda.query.all()
+    tipoPredio =TipoPredio.query.all()
+    ubigeo =Ubigeo.query.all()
 
     data_banco = []
     data_casa = []
@@ -59,7 +60,8 @@ def vista(): #esta función debe coincidir con el url_for del html (base)
     data_tipoMoneda =[]
     data_tipoPredio = []
     data_ubigeo = []
-
+    
+    # Crear una lista para almacenar los datos convertidos a json
     for obj in banco:
         x = model_to_dict(obj)
         data_banco.append(x)
@@ -136,7 +138,7 @@ def vista(): #esta función debe coincidir con el url_for del html (base)
 
 @bp.route('/recaudacion')
 def vista_predio():
-    query =recaudacion.query.all()
+    query =Recaudacion.query.all()
     data = []
     for obj in query:
         data.append(model_to_dict(obj))
@@ -147,7 +149,7 @@ def vista_predio():
 
 @bp.route('/persona')
 def vista_predio():
-    query =persona.query.all()
+    query =Persona.query.all()
     data = []
     for obj in query:
         data.append(model_to_dict(obj))
@@ -158,7 +160,18 @@ def vista_predio():
 
 @bp.route('/predio')
 def vista_predio():
-    query =predio.query.all()
+    query =Predio.query.all()
+    data = []
+    for obj in query:
+        data.append(model_to_dict(obj))
+    result = {
+        'predio': data
+    }
+    return jsonify(result)
+
+@bp.route('/predio')
+def vista_predio():
+    query =Predio.query.all()
     data = []
     for obj in query:
         data.append(model_to_dict(obj))

@@ -169,13 +169,46 @@ def vista_predio():
     }
     return jsonify(result)
 
-@bp.route('/predio')
-def vista_predio():
-    query =Predio.query.all()
+@bp.route('/tipo_documento')
+def vista_tipo_documento():
+    query =TipoDocumento.query.all()
     data = []
     for obj in query:
         data.append(model_to_dict(obj))
     result = {
-        'predio': data
+        'tipo_documento': data
+    }
+    return jsonify(result)
+
+@bp.route('/banco')
+def vista_banco():
+    query =Banco.query.all()
+    data = []
+    for obj in query:
+        data.append(model_to_dict(obj))
+    result = {
+        'banco': data
+    }
+    return jsonify(result)
+
+@bp.route('/cuenta')
+def vista_cuenta():
+    query =Cuenta.query.all()
+    data = []
+    for obj in query:
+        data.append(model_to_dict(obj))
+    result = {
+        'cuenta': data
+    }
+    return jsonify(result)
+
+@bp.route('/tipo_moneda')
+def vista_tipo_moneda():
+    query =TipoMoneda.query.all()
+    data = []
+    for obj in query:
+        data.append(model_to_dict(obj))
+    result = {
+        'tipo_moneda': data
     }
     return jsonify(result)

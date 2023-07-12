@@ -9,7 +9,7 @@ def crear_app():
 
     from routes import recaudaciones
     app.register_blueprint(recaudaciones.bp)
-    #from routes import vista
-    #app.register_blueprint(vista.bp)
+    from routes import vista
+    app.register_blueprint(vista.bp)
 
     return app

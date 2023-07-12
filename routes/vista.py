@@ -138,7 +138,7 @@ def vista(): #esta función debe coincidir con el url_for del html (base)
     return jsonify(result)
 
 @bp.route('/recaudacion')
-def vista_predio():
+def vista_recaudacion():
     query =Recaudacion.query.all()
     data = []
     for obj in query:
@@ -149,7 +149,7 @@ def vista_predio():
     return jsonify(result)
 
 @bp.route('/persona')
-def vista_predio():
+def vista_persona():
     query =Persona.query.all()
     data = []
     for obj in query:

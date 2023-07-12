@@ -15,7 +15,7 @@ class Persona(db.Model):
     ubigeo = db.relationship('Ubigeo', backref='persona')
 
     def __init__(self, id_persona, apellido_paterno, apellido_materno, nombres, fecha_nacimiento,
-                 id_tipo_documento, ndocumento, direccion, id_ubigeo):
+                 id_tipo_documento, ndocumento, direccion, idubigeo):
         self.id_persona = id_persona
         self.apellido_paterno = apellido_paterno
         self.apellido_materno = apellido_materno
@@ -24,4 +24,4 @@ class Persona(db.Model):
         self.id_tipo_documento = id_tipo_documento
         self.ndocumento = ndocumento
         self.direccion = direccion
-        self.id_ubigeo = id_ubigeo
+        self.idubigeo = idubigeo

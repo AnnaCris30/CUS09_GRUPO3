@@ -8,7 +8,7 @@ class MantRecibo(db.Model):
     fecha_emision = db.Column(db.Date)
     fecha_vencimiento = db.Column(db.Date)
     importe = db.Column(db.DECIMAL)
-    ajuste = db.Column(db.numeric(6,2))
+    ajuste = db.Column(db.DECIMAL(6,2))
     observacion = db.Column(db.String(100))
     id_recibo_estado = db.Column(db.Integer, db.ForeignKey('recibo_estado.id_recibo_estado'))
 

@@ -8,6 +8,7 @@ from models.cuentaPredio import CuentaPredio
 from models.estado import Estado
 from models.estadoRecaudacion import EstadoRecaudacion
 from models.mantRecibo import MantRecibo
+from models.reciboEstado import ReciboEstado
 from models.persona import Persona
 from models.predio import Predio
 from models.recaudacion import Recaudacion

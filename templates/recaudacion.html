@@ -9,6 +9,9 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+
+
+
 <!--Formulario-->
 <form class="container-form">
     <!--INFO PERSONAL-->
@@ -20,18 +23,31 @@
                 <span class="txt-lbl">Nro documento: </span>
             </label>
             <input 
+            id="ndocumento-input"
             name="ndocumento"
             type="text"
             class="form-control"
             required >
         </div> 
+        
+        <!-- BOTON BUSCAR NRO DOCUMENTO-->
+        <div class="buttons button-container">
+            <button id="buscar-btn" class="btn btn-primary">           
+                    <span class="material-icons">
+                    search        
+                </span>
+                Buscar
+            </button>            
+        </div>
 
         <div class="textInput">
             <label class="input__lbl">
                 <span class="txt-lbl">Nombre </span>
             </label>
-            <input type="text" name="" required readonly
-            value="">
+            <input 
+            id="nombre-input"
+            type="text" name="nombre-input" required readonly
+            >
         </div>  
 
         <div class="textInput">
@@ -72,7 +88,7 @@
             name=""
             type="text"
             class="form-control"
-            required >
+             >
         </div>
               
         <div class="textInput">
@@ -83,7 +99,7 @@
             name=""
             type="text"
             class="form-control"
-            required >
+             >
         </div>
 
         <div class="textInput">
@@ -94,7 +110,7 @@
             name=""
             type="text"
             class="form-control"
-            required >
+             >
         </div>
 
         <div class="textInput">
@@ -105,7 +121,7 @@
             name=""
             type="text"
             class="form-control"
-            required >
+             >
         </div>
 
         <div class="textInput">
@@ -146,7 +162,7 @@
             name=""
             type="text"
             class="form-control"
-            required >
+             >
         </div>
 
         <div class="textInput">
@@ -179,7 +195,7 @@
             name=""
             type="text"
             class="form-control"
-            required >
+             >
         </div>
 
         <div class="textInput">
@@ -206,7 +222,7 @@
             name=""
             type="text"
             class="form-control"
-            required >
+             >
         </div>
 
         <div class="textInput">
@@ -217,7 +233,7 @@
             name=""
             type="text"
             class="form-control"
-            required >
+             >
         </div>
     </div>
 </form>
@@ -264,4 +280,30 @@
         $('#tabla-recaudaciones').DataTable();
     });
 </script>
+
+<script>
+    $(document).ready(function () {
+        // Manejar el clic del botón de búsqueda
+        $('#buscar-btn').click(function () {
+            // Obtener el número de documento ingresado por el usuario
+            var numDocumento = $('#ndocumento-input').val();
+
+            // Realizar la solicitud al servidor para buscar el número de documento
+            $.post('/buscar', { num_documento: numDocumento }, function (data) {
+                // Manejar la respuesta del servidor
+                if (data.success) {
+                    // Si se encuentra el número de documento, rellenar los campos de INFO PERSONAL
+                    var nombres = data.data.nombres;
+                    $('#nombre-input').val(nombres);        
+                } else {
+                    // Si no se encuentra el número de documento, mostrar un mensaje de error
+                    alert('Número de documento no encontrado');
+                }
+            });
+        });
+    });
+</script>
+
+
+
 {% endblock %}

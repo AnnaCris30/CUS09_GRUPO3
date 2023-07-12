@@ -20,13 +20,6 @@ def buscar_numDocumento():
     if persona:
         # Si se encuentra el número de documento, obtener los valores correspondientes
         nombres = persona.nombres
-        banco = persona.banco
-        moneda = persona.moneda
-        nro_cuenta = persona.nro_cuenta
-        nro_cuenta_predio = persona.nro_cuenta_predio
-        tipo_autorizacion = persona.tipo_autorizacion
-        estado = persona.estado
-
         # Devolver la respuesta al cliente en formato JSON con los valores obtenidos
         response = {
             'success': True,

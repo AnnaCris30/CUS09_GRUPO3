@@ -255,9 +255,10 @@
             </tr>
         </thead>
         <tbody>
+            {% for dato in recaudaciones %}
             <tr>
-                <td>{{ 'null' }}</td>
-                <td>{{ 'null' }}</td>
+                <td>{{ '1' }}</td>
+                <td>{{ dato.id_recaudacion }}</td>
                 <td>{{ 'null' }}</td>
                 <td>{{ 'null' }}</td>
                 <td>{{ 'null' }}</td>

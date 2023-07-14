@@ -64,16 +64,20 @@
             <label class="input__lbl">
                 <span class="txt-lbl">Moneda: </span>
             </label>
-            <input type="text" name=" " required readonly
-            value="">
+            <input
+            id = "moneda-input"
+            type="text" name="moneda-input" required readonly
+            >
         </div> 
 
         <div class="textInput">
             <label class="input__lbl">
                 <span class="txt-lbl">Nro cuenta: </span>
             </label>
-            <input type="text" name=" " required readonly
-            value="">
+            <input 
+            id = "ncuenta-input"
+            type="text" name="ncuenta-input" required readonly
+            >
         </div> 
 
     </div>
@@ -261,12 +265,12 @@
             <tr>
                 <td>{{ '1' }}</td>
                 <td>{{ dato.id_recaudacion }}</td>
-                <td>{{ 'null' }}</td>
-                <td>{{ 'null' }}</td>
-                <td>{{ 'null' }}</td>
+                <td>{{ dato.fecha_operacion }}</td>
+                <td>{{ dato.cuenta.persona.nombre_completo }}</td>
+                <td>{{ dato.cuenta_predio.predio.descripcion }}</td>
                 <td>{{ dato.tipo_moneda.etiqueta ~ ' ' ~ dato.importe }}</td>
                 <td>{{ 'null' }}</td>
-                <td>{{ 'null' }}</td>
+                <td>{{ dato.observacion }}</td>
                 <td>{{ 'null' }}</td>
             </tr>
             {% endfor %}
@@ -300,7 +304,11 @@
                     var nombres = data.data.nombres;
                     $('#nombre-input').val(nombres);   
                     var banco = data.data.banco;
-                    $('#banco-input').val(banco);       
+                    $('#banco-input').val(banco);
+                    var moneda = data.data.moneda;
+                    $('#moneda-input').val(moneda);
+                    var ncuenta = data.data.ncuenta;
+                    $('#ncuenta-input').val(ncuenta);         
                 } else {
                     // Si no se encuentra el número de documento, mostrar un mensaje de error
                     alert('Número de documento no encontrado');

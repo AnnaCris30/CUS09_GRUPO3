@@ -1,7 +1,11 @@
 from flask import Blueprint, render_template as rt, request, url_for, redirect
+from flask import flash
 from models.persona import Persona
+from models.cuenta import Cuenta
 from models.recaudacion import Recaudacion
 from schemas.recaudacionSchema import RecaudacionSchema
+
+
 from flask import jsonify
 bp = Blueprint('recaudaciones', __name__)
 
@@ -28,21 +32,24 @@ def buscar_numDocumento():
         # Si se encuentra el número de documento, obtener los valores correspondientes        
         nombres = persona.nombres
         id_persona=persona.id_persona
-        cuenta = cuenta.query.filter_by(id=id_persona)
+        cuenta = Cuenta.query.filter_by(id_persona=id_persona).first()
         banco=cuenta.banco.descripcion
+        moneda = cuenta.tipo_moneda.descripcion
+        ncuenta = cuenta.ncuenta
+        
         # Devolver la respuesta al cliente en formato JSON con los valores obtenidos
         response = {
             'success': True,
             'data': {
                 'nombres': nombres,
                 'banco' : banco,
+                'moneda' : moneda,
+                'ncuenta': ncuenta
             }
         }
         return jsonify(response)
     else:
-        # Si no se encuentra el número de documento, devolver un mensaje de error al cliente
-        response = {
-            'success': False,
-            'message': 'Número de documento no encontrado'
-        }
-        return jsonify(response)
+         
+        # Si no se encuentra el número de documento, redirigir a la página inicial con un mensaje de error
+        flash('Número de documento no encontrado', 'error')
+        return redirect(url_for('recaudaciones'))

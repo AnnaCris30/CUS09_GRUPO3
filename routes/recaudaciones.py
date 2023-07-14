@@ -10,6 +10,7 @@ from models.mantRecibo import MantRecibo
 from schemas.mantReciboSchema import MantReciboSchema
 from models.predio import Predio
 from models.cuentaPredio import CuentaPredio  
+from utils.db import db
 
 bp = Blueprint('recaudaciones', __name__)
 
@@ -128,3 +129,17 @@ def buscar_nroRecibo():
         flash('Número de recibo no encontrado', 'error')
         return redirect(url_for('recaudaciones'))
 
+@bp.route('/eliminar/<int:id_recaudacion>', methods=['GET', 'POST'])
+def eliminar_recaudacion(id_recaudacion):
+    recaudacion = Recaudacion.query.get(id_recaudacion)
+
+    if request.method == 'POST':
+        # Eliminar la recaudación de la base de datos
+        db.session.delete(recaudacion)
+        db.session.commit()
+
+        # Redirigir a la página principal de recaudaciones
+        return redirect(url_for('recaudaciones.recaudaciones'))
+
+    # Renderizar la plantilla de confirmación de eliminación
+    return rt("eliminar_recaudacion.html", recaudacion=recaudacion)

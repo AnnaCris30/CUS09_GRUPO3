@@ -264,11 +264,12 @@
                 <td>{{ 'null' }}</td>
                 <td>{{ 'null' }}</td>
                 <td>{{ 'null' }}</td>
-                <td>{{ 'null' }}</td>
+                <td>{{ dato.tipo_moneda.etiqueta ~ ' ' ~ dato.importe }}</td>
                 <td>{{ 'null' }}</td>
                 <td>{{ 'null' }}</td>
                 <td>{{ 'null' }}</td>
             </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>

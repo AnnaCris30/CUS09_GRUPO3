@@ -1,4 +1,3 @@
-
 {% extends 'base-user.html' %}
 {% block title %}RECAUDACIONES{% endblock %}
 {% block header %}
@@ -9,237 +8,184 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-
-
-
-<!--Formulario-->
+<!-- Formulario -->
 <form class="container-form">
-    <!--INFO PERSONAL-->
+    <!-- INFO PERSONAL -->
     <div class="form-apartado" id="info_personal">
-        <div class="apartado-titulo">INFORMACIÓN PERSONAL</div>     
-        
+        <div class="apartado-titulo">INFORMACIÓN PERSONAL</div>
+
         <div class="textInput">
             <label class="input__lbl">
-                <span class="txt-lbl">Nro documento: </span>
+                <span class="txt-lbl">Nro documento:</span>
             </label>
-            <input 
-            id="ndocumento-input"
-            name="ndocumento"
-            type="text"
-            class="form-control"
-            required >
-        </div> 
-        
-        <!-- BOTON BUSCAR NRO DOCUMENTO-->
+            <input id="ndocumento-input" name="ndocumento" type="text" class="form-control">
+        </div>
+
+        <!-- BOTON BUSCAR NRO DOCUMENTO -->
         <div class="buttons button-container">
-            <button id="buscar-btn" class="btn btn-primary">           
-                    <span class="material-icons">
-                    search        
-                </span>
+            <button id="buscar-btn" class="btn btn-primary">
+                <span class="material-icons">search</span>
                 Buscar
-            </button>            
+            </button>
         </div>
 
         <div class="textInput">
             <label class="input__lbl">
-                <span class="txt-lbl">Nombre </span>
+                <span class="txt-lbl">Nombre</span>
             </label>
-            <input 
-            id="nombre-input"
-            type="text" name="nombre-input" required readonly
-            >
-        </div>  
+            <input id="nombre-input" type="text" name="nombre-input" required readonly>
+        </div>
 
         <div class="textInput">
             <label class="input__lbl">
-                <span class="txt-lbl">Banco: </span>
+                <span class="txt-lbl">Banco:</span>
             </label>
-            <input 
-            id="banco-input"
-            type="text" name="banco-input" required readonly
-            >
-        </div> 
+            <input id="banco-input" type="text" name="banco-input" required readonly>
+        </div>
 
         <div class="textInput">
             <label class="input__lbl">
-                <span class="txt-lbl">Moneda: </span>
+                <span class="txt-lbl">Moneda:</span>
             </label>
-            <input
-            id = "moneda-input"
-            type="text" name="moneda-input" required readonly
-            >
-        </div> 
+            <input id="moneda-input" type="text" name="moneda-input" required readonly>
+        </div>
 
         <div class="textInput">
             <label class="input__lbl">
-                <span class="txt-lbl">Nro cuenta: </span>
+                <span class="txt-lbl">Nro cuenta:</span>
             </label>
-            <input 
-            id = "ncuenta-input"
-            type="text" name="ncuenta-input" required readonly
-            >
-        </div> 
-
+            <input id="ncuenta-input" type="text" name="ncuenta-input" required readonly>
+        </div>
     </div>
 
-    <!--PREDIO-->
+    <!-- PREDIO -->
     <div class="form-apartado" id="info_predio">
-        <div class="apartado-titulo">INFORMACIÓN DEL PREDIO</div> 
+        <div class="apartado-titulo">INFORMACIÓN DEL PREDIO</div>
 
         <div class="textInput">
             <label class="input__lbl">
-                <span class="txt-lbl">Nombre: </span>
+                <span class="txt-lbl">Nombre:</span>
             </label>
-            <input 
-            name=""
-            type="text"
-            class="form-control"
-             >
-        </div>
-              
-        <div class="textInput">
-            <label class="input__lbl">
-                <span class="txt-lbl">Direccion: </span>
-            </label>
-            <input 
-            name=""
-            type="text"
-            class="form-control"
-             >
+            <input name="" type="text" class="form-control">
         </div>
 
         <div class="textInput">
             <label class="input__lbl">
-                <span class="txt-lbl">Tipo de Predio: </span>
+                <span class="txt-lbl">Direccion:</span>
             </label>
-            <input 
-            name=""
-            type="text"
-            class="form-control"
-             >
+            <input name="" type="text" class="form-control">
         </div>
 
         <div class="textInput">
             <label class="input__lbl">
-                <span class="txt-lbl">RUC: </span>
+                <span class="txt-lbl">Tipo de Predio:</span>
             </label>
-            <input 
-            name=""
-            type="text"
-            class="form-control"
-             >
+            <input name="" type="text" class="form-control">
         </div>
 
         <div class="textInput">
             <label class="input__lbl">
-                <span class="txt-lbl">Nro cuenta predio: </span>
+                <span class="txt-lbl">RUC:</span>
             </label>
-            <input type="text" name=" " required readonly
-            value="">
-        </div>
-        
-        <div class="textInput">
-            <label class="input__lbl">
-                <span class="txt-lbl">Tipo de autorizacion: </span>
-            </label>
-            <input type="text" name=" " required readonly
-            value="">
+            <input name="" type="text" class="form-control">
         </div>
 
         <div class="textInput">
             <label class="input__lbl">
-                <span class="txt-lbl">Estado: </span>
+                <span class="txt-lbl">Nro cuenta predio:</span>
             </label>
-            <input type="text" name=" " required readonly
-            value="">
+            <input type="text" name=" " required readonly value="">
         </div>
 
+        <div class="textInput">
+            <label class="input__lbl">
+                <span class="txt-lbl">Tipo de autorizacion:</span>
+            </label>
+            <input type="text" name=" " required readonly value="">
+        </div>
+
+        <div class="textInput">
+            <label class="input__lbl">
+                <span class="txt-lbl">Estado:</span>
+            </label>
+            <input type="text" name=" " required readonly value="">
+        </div>
     </div>
-    
-    <!--RECIBO-->
+
+    <!-- RECIBO -->
     <div class="form-apartado" id="info_recibo">
         <div class="apartado-titulo">INFORMACIÓN DEL RECIBO</div>
-        
+
         <div class="textInput">
-            <label class="input__lbl">
-                <span class="txt-lbl">Nro de recibo: </span>
-            </label>
-            <input 
-            name=""
-            type="text"
-            class="form-control"
-             >
+            <label for="n_recibo-input">N° recibo:</label>
+            <select class="form-control" id="n_recibo-input" name="n_recibo-input">
+                {% for dato in recibos %}
+                <option value="{{ dato }}">{{ dato.n_recibo }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- BOTON BUSCAR NRO RECIBO -->
+        <div class="buttons button-container">
+            <button id="buscar_recibo" class="btn btn-primary">
+                <span class="material-icons">search</span>
+                Buscar
+            </button>
         </div>
 
         <div class="textInput">
             <label class="input__lbl">
-                <span class="txt-lbl">Estado de recibo: </span>
+                <span class="txt-lbl">Estado de recibo:</span>
             </label>
-            <input type="text" name=" " required readonly
-            value="">
+            <input id="estado_recibo" type="text" name="estado_recibo" required readonly>
         </div>
 
         <div class="textInput">
             <label class="input__lbl">
-                <span class="txt-lbl">Importe: </span>
+                <span class="txt-lbl">Importe:</span>
             </label>
-            <input type="text" name=" " required readonly
-            value="">
+            <input id="importe_recibo" type="text" name="importe_recibo" required readonly>
         </div>
-
     </div>
 
-    <!--RECAUDACION-->
+    <!-- RECAUDACION -->
     <div class="form-apartado" id="info_recaudacion">
         <div class="apartado-titulo">INFORMACIÓN DE RECAUDACION</div>
-        
+
         <div class="textInput">
             <label class="input__lbl">
-                <span class="txt-lbl">Fecha: </span>
+                <span class="txt-lbl">Fecha:</span>
             </label>
-            <input 
-            name=""
-            type="text"
-            class="form-control"
-             >
+            <input name="" type="text" class="form-control">
         </div>
 
         <div class="textInput">
             <label class="input__lbl">
-                <span class="txt-lbl">Tipo de Moneda: </span>
+                <span class="txt-lbl">Tipo de Moneda:</span>
             </label>
-            <input type="text" name=" " required readonly
-            value="">
+
+            <input type="text" name=" " required readonly id="moneda_recaudacion">
         </div>
 
         <div class="textInput">
             <label class="input__lbl">
-                <span class="txt-lbl">Importe: </span>
+                <span class="txt-lbl">Importe:</span>
             </label>
-            <input type="text" name=" " required readonly
-            value="">
+            <input type="text" name=" " required readonly value="">
         </div>
 
         <div class="textInput">
             <label class="input__lbl">
-                <span class="txt-lbl">Estado de recaudacion: </span>
+                <span class="txt-lbl">Estado de recaudacion:</span>
             </label>
-            <input 
-            name=""
-            type="text"
-            class="form-control"
-             >
+            <input name="" type="text" class="form-control">
         </div>
 
         <div class="textInput">
             <label class="input__lbl">
-                <span class="txt-lbl">Observacion: </span>
+                <span class="txt-lbl">Observacion:</span>
             </label>
-            <input 
-            name=""
-            type="text"
-            class="form-control"
-             >
+            <input name="" type="text" class="form-control">
         </div>
     </div>
 </form>
@@ -263,7 +209,7 @@
         <tbody>
             {% for dato in recaudaciones %}
             <tr>
-                <td>{{ '1' }}</td>
+                <td>{{ loop.index }}</td>
                 <td>{{ dato.id_recaudacion }}</td>
                 <td>{{ dato.fecha_operacion }}</td>
                 <td>{{ dato.cuenta.persona.nombre_completo }}</td>
@@ -277,8 +223,6 @@
         </tbody>
     </table>
 </div>
-
-
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
@@ -302,13 +246,15 @@
                 if (data.success) {
                     // Si se encuentra el número de documento, rellenar los campos de INFO PERSONAL
                     var nombres = data.data.nombres;
-                    $('#nombre-input').val(nombres);   
+                    $('#nombre-input').val(nombres);
                     var banco = data.data.banco;
                     $('#banco-input').val(banco);
                     var moneda = data.data.moneda;
                     $('#moneda-input').val(moneda);
                     var ncuenta = data.data.ncuenta;
-                    $('#ncuenta-input').val(ncuenta);         
+                    $('#ncuenta-input').val(ncuenta);
+                    var moneda = data.data.moneda;
+                    $('#moneda_recaudacion').val(moneda);
                 } else {
                     // Si no se encuentra el número de documento, mostrar un mensaje de error
                     alert('Número de documento no encontrado');
@@ -318,6 +264,30 @@
     });
 </script>
 
+<script>
+    $(document).ready(function () {
+        // Manejar el clic del botón de búsqueda
+        $('#buscar_recibo').click(function () {
+            // Obtener el número de documento ingresado por el usuario
+            var numRecibo = $('#n_recibo-input').val();
 
+            // Realizar la solicitud al servidor para buscar el número de documento
+            $.post('/buscarRecibo', { num_recibo: numRecibo }, function (data) {
+                // Manejar la respuesta del servidor
+                if (data.success) {
+                    // Si se encuentra el número de documento, rellenar los campos de INFO PERSONAL
+                    var recibo_estado = data.data.recibo_estado;
+                    $('#estado_recibo').val(recibo_estado);
+                    var importe = data.data.importe;
+                    $('#importe_recibo').val(importe);
+
+                } else {
+                    // Si no se encuentra el número de documento, mostrar un mensaje de error
+                    alert('Número de documento no encontrado');
+                }
+            });
+        });
+    });
+</script>
 
 {% endblock %}

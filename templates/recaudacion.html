@@ -76,7 +76,7 @@
             name="rpredio"
             type="text"
             class="form-control"
-            required >
+            >
         </div>
 
         <!-- BOTON BUSCAR RUC-->
@@ -195,7 +195,16 @@
         <div class="apartado-titulo">
             <span class="material-icons">attach_money</span>
             INFORMACIÓN DE RECAUDACION</div>
-
+        <div class="textInput">
+            <label class="input__lbl">
+                <span class="txt-lbl">Nro Operacion: </span>
+            </label>
+            <input 
+            name=""
+            type="text"
+            class="form-control"
+            >
+        </div>           
         <div class="textInput">
             <label class="input__lbl">
                 <span class="txt-lbl">Fecha:</span>
@@ -221,10 +230,13 @@
         </div>
 
         <div class="textInput">
-            <label class="input__lbl">
-                <span class="txt-lbl">Estado de recaudacion:</span>
-            </label>
-            <input name="" type="text" class="form-control">
+            <label for="EstadoR-input">Estado:</label>
+            <select class="form-control" id="EstadoR-input" name="EstadoR-input" >
+                <option value="Validado">Validado</option>
+                <option value="Rechazado">Rechazado</option>
+                <option value="Anulado">Anulado</option>
+                <option value="Registrado">Registrado</option>
+            </select>
         </div>
 
         <div class="textInput">
@@ -232,6 +244,14 @@
                 <span class="txt-lbl">Observacion:</span>
             </label>
             <input name="" type="text" class="form-control">
+        </div>
+        <div class="buttons button-container">
+            <button id="agregar-btn" class="btn btn-primary">           
+                    <span class="material-icons">
+                     add     
+                </span>
+                agregar
+            </button>            
         </div>
     </div>
 </form>
@@ -264,7 +284,10 @@
           <td>{{ dato.tipo_moneda.etiqueta ~ ' ' ~ dato.importe }}</td>
           <td>{{ 'null' }}</td>
           <td>{{ dato.observacion }}</td>
-          <td>{{ 'null' }}</td>
+          <td>
+            <a href="/editar/{{ dato.id_recaudacion }}" class="btn btn-primary">Editar</a>
+            <a href="/eliminar/{{ dato.id_recaudacion }}" class="btn btn-danger">Eliminar</a>
+          </td>
         </tr>
         {% endfor %}
       </tbody>
@@ -375,6 +398,16 @@
             });
         });
     });
+
+  
+    $(document).ready(function () {
+        // Manejar el clic del botón de búsqueda
+        $('#agregar-btn').click(function () {
+            // Realizar la solicitud al servidor para buscar el número de documento
+            window.location.href = '/';
+        });
+    });  
+
 </script>
 
 {% endblock %}

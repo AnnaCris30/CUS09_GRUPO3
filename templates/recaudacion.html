@@ -237,38 +237,40 @@
 </form>
 
 <!-- Tabla de recaudaciones Pendientes -->
-<div class="table-container d-flex justify-content-center">
-    <table id="tabla-recaudaciones" class="table table-striped table-bordered" style="width:100%">
-        <thead>
-            <tr>
-                <th>N°</th>
-                <th>Nro recaudacion</th>
-                <th>Fecha</th>
-                <th>Nombre</th>
-                <th>Predio</th>
-                <th>Importe</th>
-                <th>Estado</th>
-                <th>Observacion</th>
-                <th>Opciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for dato in recaudaciones %}
-            <tr>
-                <td>{{ loop.index }}</td>
-                <td>{{ dato.id_recaudacion }}</td>
-                <td>{{ dato.fecha_operacion }}</td>
-                <td>{{ dato.cuenta.persona.nombre_completo }}</td>
-                <td>{{ dato.cuenta_predio.predio.descripcion }}</td>
-                <td>{{ dato.tipo_moneda.etiqueta ~ ' ' ~ dato.importe }}</td>
-                <td>{{ 'null' }}</td>
-                <td>{{ dato.observacion }}</td>
-                <td>{{ 'null' }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
+<!-- Tabla de recaudaciones Pendientes -->
+<div class="table-container">
+    <table id="tabla-recaudaciones" class="custom-table">
+      <thead>
+        <tr>
+          <th>N°</th>
+          <th>Nro recaudación</th>
+          <th>Fecha</th>
+          <th>Nombre</th>
+          <th>Predio</th>
+          <th>Importe</th>
+          <th>Estado</th>
+          <th>Observación</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for dato in recaudaciones %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ dato.id_recaudacion }}</td>
+          <td>{{ dato.fecha_operacion }}</td>
+          <td>{{ dato.cuenta.persona.nombre_completo }}</td>
+          <td>{{ dato.cuenta_predio.predio.descripcion }}</td>
+          <td>{{ dato.tipo_moneda.etiqueta ~ ' ' ~ dato.importe }}</td>
+          <td>{{ 'null' }}</td>
+          <td>{{ dato.observacion }}</td>
+          <td>{{ 'null' }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
-</div>
+  </div>
+  
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>

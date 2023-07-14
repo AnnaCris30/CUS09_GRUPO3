@@ -125,3 +125,39 @@
   cursor: pointer;
   font-size: 18px;
 }
+/* Estilos para la tabla de recaudaciones */
+.table-container {
+  width: 100%;
+  max-width: 1500px;
+  margin: auto;
+  padding: 20px;
+  border: 3px solid #28a745; /* Cambia el color del borde a verde */
+  background-color: #e6f9f0; /* Cambia el fondo de color de la tabla a verde claro */
+  border-radius: 10px; /* Agrega bordes redondeados a la tabla */
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-container th,
+.table-container td {
+  padding: 10px;
+  text-align: center;
+  border: 0.7px solid #e5f5e6; /* Cambia el color del borde a azul */
+}
+
+.table-container th {
+  background-color: #bbe7ff; /* Cambia el color de fondo de las celdas del encabezado a azul claro */
+}
+
+.table-container tbody tr:nth-child(even) {
+  background-color: #c2f0d8; /* Cambia el color de fondo de las filas pares a verde claro */
+}
+
+.table-container tbody tr:hover {
+  background-color: #d7eff5; /* Cambia el color de fondo de las filas al pasar el cursor a azul claro */
+}
+
+

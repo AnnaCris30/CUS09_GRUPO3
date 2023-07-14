@@ -23,15 +23,19 @@ def buscar_numDocumento():
 
     # Lógica para buscar el número de documento en la base de datos y obtener los valores correspondientes
     persona = Persona.query.filter_by(ndocumento=num_documento).first()
-
+    
     if persona:
-        # Si se encuentra el número de documento, obtener los valores correspondientes
+        # Si se encuentra el número de documento, obtener los valores correspondientes        
         nombres = persona.nombres
+        id_persona=persona.id_persona
+        cuenta = cuenta.query.filter_by(id=id_persona)
+        banco=cuenta.banco.descripcion
         # Devolver la respuesta al cliente en formato JSON con los valores obtenidos
         response = {
             'success': True,
             'data': {
-                'nombres': nombres, 
+                'nombres': nombres,
+                'banco' : banco,
             }
         }
         return jsonify(response)

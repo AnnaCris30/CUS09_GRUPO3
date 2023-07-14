@@ -54,8 +54,10 @@
             <label class="input__lbl">
                 <span class="txt-lbl">Banco: </span>
             </label>
-            <input type="text" name=" " required readonly
-            value="">
+            <input 
+            id="banco-input"
+            type="text" name="banco-input" required readonly
+            >
         </div> 
 
         <div class="textInput">
@@ -295,7 +297,9 @@
                 if (data.success) {
                     // Si se encuentra el número de documento, rellenar los campos de INFO PERSONAL
                     var nombres = data.data.nombres;
-                    $('#nombre-input').val(nombres);        
+                    $('#nombre-input').val(nombres);   
+                    var banco = data.data.banco;
+                    $('#banco-input').val(banco);       
                 } else {
                     // Si no se encuentra el número de documento, mostrar un mensaje de error
                     alert('Número de documento no encontrado');

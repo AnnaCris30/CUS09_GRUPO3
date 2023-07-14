@@ -58,58 +58,91 @@
         </div>
     </div>
 
-    <!-- PREDIO -->
+    
+    <!--PREDIO-->
     <div class="form-apartado" id="info_predio">
-        <div class="apartado-titulo">INFORMACIÓN DEL PREDIO</div>
+        <div class="apartado-titulo">INFORMACIÓN DEL PREDIO</div> 
 
         <div class="textInput">
             <label class="input__lbl">
-                <span class="txt-lbl">Nombre:</span>
+                <span class="txt-lbl">RUC: </span>
             </label>
-            <input name="" type="text" class="form-control">
+            <input 
+            id="rpredio-input"
+            name="rpredio"
+            type="text"
+            class="form-control"
+            required >
+        </div> 
+
+        <!-- BOTON BUSCAR RUC-->
+        <div class="buttons button-container">
+            <button id="buscarpredio-btn" class="btn btn-primary" type="button">           
+                    <span class="material-icons">search</span>
+                Buscar
+            </button>            
         </div>
 
         <div class="textInput">
             <label class="input__lbl">
-                <span class="txt-lbl">Direccion:</span>
+                <span class="txt-lbl">Nombre: </span>
             </label>
-            <input name="" type="text" class="form-control">
-        </div>
+            <input 
+            id = "nompredio-input"
+            type="text" name="nompredio-input" required readonly
+            >
+        </div> 
+              
+        <div class="textInput">
+            <label class="input__lbl">
+                <span class="txt-lbl">Direccion: </span>
+            </label>
+            <input 
+            id = "direccion-input"
+            type="text" name="direccion-input" required readonly
+            >
+        </div> 
 
         <div class="textInput">
             <label class="input__lbl">
-                <span class="txt-lbl">Tipo de Predio:</span>
+                <span class="txt-lbl">Tipo de Predio: </span>
             </label>
-            <input name="" type="text" class="form-control">
-        </div>
+            <input 
+            id = "tpredio-input"
+            type="text" name="tpredio-input" required readonly
+            >
+        </div> 
 
         <div class="textInput">
             <label class="input__lbl">
-                <span class="txt-lbl">RUC:</span>
+                <span class="txt-lbl">Nro cuenta predio: </span>
             </label>
-            <input name="" type="text" class="form-control">
-        </div>
+            <input 
+            id = "ncuentapredio-input"
+            type="text" name="ncuentapredio-input" required readonly
+            >
+        </div> 
+        
+        <div class="textInput">
+            <label class="input__lbl">
+                <span class="txt-lbl">Tipo de autorizacion: </span>
+            </label>
+            <input 
+            id = "tautorizacion-input"
+            type="text" name="tautorizacion-input" required readonly
+            >
+        </div> 
 
         <div class="textInput">
             <label class="input__lbl">
-                <span class="txt-lbl">Nro cuenta predio:</span>
+                <span class="txt-lbl">Estado: </span>
             </label>
-            <input type="text" name=" " required readonly value="">
-        </div>
+            <input 
+            id = "estadopredio-input"
+            type="text" name="estadopredio-input" required readonly
+            >
+        </div> 
 
-        <div class="textInput">
-            <label class="input__lbl">
-                <span class="txt-lbl">Tipo de autorizacion:</span>
-            </label>
-            <input type="text" name=" " required readonly value="">
-        </div>
-
-        <div class="textInput">
-            <label class="input__lbl">
-                <span class="txt-lbl">Estado:</span>
-            </label>
-            <input type="text" name=" " required readonly value="">
-        </div>
     </div>
 
     <!-- RECIBO -->
@@ -117,17 +150,20 @@
         <div class="apartado-titulo">INFORMACIÓN DEL RECIBO</div>
 
         <div class="textInput">
-            <label for="n_recibo-input">N° recibo:</label>
-            <select class="form-control" id="n_recibo-input" name="n_recibo-input">
-                {% for dato in recibos %}
-                <option value="{{ dato }}">{{ dato.n_recibo }}</option>
-                {% endfor %}
-            </select>
+            <label class="input__lbl">
+                <span class="txt-lbl">N° recibo: </span>
+            </label>
+            <input 
+            id="n_recibo-input"
+            name="n_recibo-input"
+            type="text"
+            class="form-control"
+             >
         </div>
 
         <!-- BOTON BUSCAR NRO RECIBO -->
         <div class="buttons button-container">
-            <button id="buscar_recibo" class="btn btn-primary">
+            <button id="buscar_recibo" class="btn btn-primary" type="button">
                 <span class="material-icons">search</span>
                 Buscar
             </button>
@@ -171,7 +207,9 @@
             <label class="input__lbl">
                 <span class="txt-lbl">Importe:</span>
             </label>
-            <input type="text" name=" " required readonly value="">
+            <input 
+            id = "importe_recibo_recaudacion"
+            type="text" name="importe_recibo_recaudacion" required readonly>
         </div>
 
         <div class="textInput">
@@ -241,7 +279,7 @@
             var numDocumento = $('#ndocumento-input').val();
 
             // Realizar la solicitud al servidor para buscar el número de documento
-            $.post('/buscar', { num_documento: numDocumento }, function (data) {
+            $.post('/buscar/<string:num_documento>', { num_documento: numDocumento }, function (data) {
                 // Manejar la respuesta del servidor
                 if (data.success) {
                     // Si se encuentra el número de documento, rellenar los campos de INFO PERSONAL
@@ -261,6 +299,42 @@
                 }
             });
         });
+    return false;
+        
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        // Manejar el clic del botón de búsqueda
+        $('#buscarpredio-btn').click(function () {
+            event.preventDefault();
+            // Obtener el número de documento ingresado por el usuario
+            var rucpredio = $('#rpredio-input').val();
+
+            // Realizar la solicitud al servidor para buscar el número de documento
+            $.post('/buscarpredio', { num_ruc: rucpredio  }, function (data) {
+                // Manejar la respuesta del servidor
+                if (data.success) {
+                    // Si se encuentra el número de documento, rellenar los campos de INFO PREDIO
+                    var descripcion = data.data.descripcion;
+                    $('#nompredio-input').val(descripcion);   
+                    var direccion= data.data.direccion;
+                    $('#direccion-input').val(direccion);
+                    var tipo_predio = data.data.tipo_predio;
+                    $('#tpredio-input').val(tipo_predio);
+                    var ncuenta = data.data.ncuenta;
+                    $('#ncuentapredio-input').val(ncuenta);
+                    var tipo_autorizacion = data.data.tipo_autorizacion;
+                    $('#tautorizacion-input').val(tipo_autorizacion);
+                    var estado = data.data.estado;
+                    $('#estadopredio-input').val(estado);      
+                } else {
+                    // Si no se encuentra el número de documento, mostrar un mensaje de error
+                    alert('Número de ruc no encontrado');
+                }
+            });
+        });
     });
 </script>
 
@@ -268,6 +342,7 @@
     $(document).ready(function () {
         // Manejar el clic del botón de búsqueda
         $('#buscar_recibo').click(function () {
+            event.preventDefault();
             // Obtener el número de documento ingresado por el usuario
             var numRecibo = $('#n_recibo-input').val();
 
@@ -280,6 +355,8 @@
                     $('#estado_recibo').val(recibo_estado);
                     var importe = data.data.importe;
                     $('#importe_recibo').val(importe);
+                    var importe = data.data.importe;
+                    $('#importe_recibo_recaudacion').val(importe);
 
                 } else {
                     // Si no se encuentra el número de documento, mostrar un mensaje de error

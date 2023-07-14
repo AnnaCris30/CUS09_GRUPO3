@@ -8,7 +8,8 @@ from models.mantRecibo import MantRecibo
 from flask import jsonify
 from models.mantRecibo import MantRecibo
 from schemas.mantReciboSchema import MantReciboSchema
-
+from models.predio import Predio
+from models.cuentaPredio import CuentaPredio  
 
 bp = Blueprint('recaudaciones', __name__)
 
@@ -26,8 +27,8 @@ def recaudaciones():
     
  
 ## ------------BUSCAR POR NUMERO DE DOCUMENTO---------------
-@bp.route('/buscar', methods=['POST'])
-def buscar_numDocumento():
+@bp.route('/buscar/<string:num_documento>', methods=['POST'])
+def buscar_numDocumento(num_documento):
     num_documento = request.form['num_documento']
 
     # Lógica para buscar el número de documento en la base de datos y obtener los valores correspondientes
@@ -59,6 +60,43 @@ def buscar_numDocumento():
         flash('Número de documento no encontrado', 'error')
         return redirect(url_for('recaudaciones'))
 
+##------------BUSCAR POR RUC--------------
+@bp.route('/buscarpredio', methods=['POST'])
+def buscar_numRuc():
+    num_ruc= request.form['num_ruc']
+
+    # Lógica para buscar el número de documento en la base de datos y obtener los valores correspondientes
+    predio = Predio.query.filter_by(ruc=num_ruc).first()
+    
+    if predio:
+        # Si se encuentra el número de documento, obtener los valores correspondientes        
+        descripcion = predio.descripcion
+        direccion = predio.direccion
+        tipo_predio = predio.tipo_predio.nomre_predio
+        id_predio=predio.id_predio
+        cuenta_predio = CuentaPredio.query.filter_by(id_predio=id_predio).first()
+        ncuenta=cuenta_predio.ncuenta
+        tipo_autorizacion=cuenta_predio.tipo_autorizacion.descripcion
+        estado=cuenta_predio.estado.descripcion
+        
+        # Devolver la respuesta al cliente en formato JSON con los valores obtenidos
+        response = {
+            'success': True,
+            'data': {
+                'descripcion': descripcion,
+                'direccion' : direccion,
+                'tipo_predio' : tipo_predio,
+                'ncuenta': ncuenta,
+                'tipo_autorizacion': tipo_autorizacion,
+                'estado': estado,
+            }
+        }
+        return jsonify(response)
+    else:
+         
+        # Si no se encuentra el número de documento, redirigir a la página inicial con un mensaje de error
+        flash('Número de ruc no encontrado', 'error')
+        return redirect(url_for('recaudaciones'))
 
 
 ##------------BUSCAR POR NUMERO RECIBO---------------
@@ -89,4 +127,4 @@ def buscar_nroRecibo():
         # Si no se encuentra el número de documento, redirigir a la página inicial con un mensaje de error
         flash('Número de recibo no encontrado', 'error')
         return redirect(url_for('recaudaciones'))
-      
+

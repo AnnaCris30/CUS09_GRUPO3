@@ -199,8 +199,8 @@
             <label class="input__lbl">
                 <span class="txt-lbl">Nro Operacion: </span>
             </label>
-            <input 
-            name=""
+            <input id="n_operacion" 
+            name="n_operacion"
             type="text"
             class="form-control"
             >
@@ -209,7 +209,7 @@
             <label class="input__lbl">
                 <span class="txt-lbl">Fecha:</span>
             </label>
-            <input name="" type="text" class="form-control">
+            <input id="fecha-operacion-input" name="fecha-operacion-input" type="text" class="form-control">
         </div>
 
         <div class="textInput">
@@ -232,10 +232,10 @@
         <div class="textInput">
             <label for="EstadoR-input">Estado:</label>
             <select class="form-control" id="EstadoR-input" name="EstadoR-input" >
-                <option value="Validado">Validado</option>
-                <option value="Rechazado">Rechazado</option>
-                <option value="Anulado">Anulado</option>
-                <option value="Registrado">Registrado</option>
+                <option value=1>Validado</option>
+                <option value=2>Rechazado</option>
+                <option value=3>Anulado</option>
+                <option value=4>Registrado</option>
             </select>
         </div>
 
@@ -243,7 +243,7 @@
             <label class="input__lbl">
                 <span class="txt-lbl">Observacion:</span>
             </label>
-            <input name="" type="text" class="form-control">
+            <input id="observacion-input" name="observacion-input" type="text" class="form-control">
         </div>
         <div class="buttons button-container">
             <button id="agregar-btn" class="btn btn-primary">           
@@ -282,7 +282,17 @@
           <td>{{ dato.cuenta.persona.nombre_completo }}</td>
           <td>{{ dato.cuenta_predio.predio.descripcion }}</td>
           <td>{{ dato.tipo_moneda.etiqueta ~ ' ' ~ dato.importe }}</td>
-          <td>{{ 'null' }}</td>
+          <td>
+            {% if dato.id_recaudacion_estado == 1 %}
+              Validado
+            {% elif dato.id_recaudacion_estado == 2 %}
+              Rechazado
+            {% elif dato.id_recaudacion_estado == 3 %}
+              Anulado
+	        {% else %}
+              Registrado
+            {% endif %}
+          </td>
           <td>{{ dato.observacion }}</td>
           <td>
             <a href="/editar/{{ dato.id_recaudacion }}" class="btn btn-primary">Editar</a>
@@ -308,6 +318,7 @@
     $(document).ready(function () {
         // Manejar el clic del botón de búsqueda
         $('#buscar-btn').click(function () {
+            event.preventDefault();
             // Obtener el número de documento ingresado por el usuario
             var numDocumento = $('#ndocumento-input').val();
 
@@ -335,9 +346,7 @@
     return false;
         
     });
-</script>
 
-<script>
     $(document).ready(function () {
         // Manejar el clic del botón de búsqueda
         $('#buscarpredio-btn').click(function () {
@@ -369,9 +378,7 @@
             });
         });
     });
-</script>
-
-<script>
+    
     $(document).ready(function () {
         // Manejar el clic del botón de búsqueda
         $('#buscar_recibo').click(function () {
@@ -401,12 +408,43 @@
 
   
     $(document).ready(function () {
-        // Manejar el clic del botón de búsqueda
-        $('#agregar-btn').click(function () {
-            // Realizar la solicitud al servidor para buscar el número de documento
-            window.location.href = '/';
+    // Manejar el clic del botón de agregar
+    $('#agregar-btn').click(function () {
+        // Obtener los valores del formulario
+        var numCuenta = $('#num_cuenta-input').val();
+        var numRecibo = $('#num_recibo-input').val();
+        var numCuentaPredio = $('#num_cuentaPredio-input').val();
+        var nOperacion = $('#n_operacion-input').val();
+        var fechaOperacion = $('#fech_operacion-input').val();
+        var tipoMoneda = $('#tipo_moneda-input').val();
+        var importe = $('#importe-input').val();
+        var idRecaudacionEstado = $('#id_recaudacion_estado-input').val();
+        var observacion = $('#observacion-input').val();
+
+        // Realizar la solicitud al servidor para agregar los datos
+        $.post('/agregar', {
+            num_cuenta: numCuenta,
+            num_recibo: numRecibo,
+            num_cuentaPredio: numCuentaPredio,
+            n_operacion: nOperacion,
+            fecha_operacion: fechaOperacion,
+            tipo_moneda: tipoMoneda,
+            importe: importe,
+            id_recaudacion_estado: idRecaudacionEstado,
+            observacion: observacion
+        }, function (data) {
+            // Manejar la respuesta del servidor
+            if (data.success) {
+                // Mostrar un mensaje de éxito y actualizar la tabla
+                alert(data.message);
+                location.reload(); // Recargar la página para reflejar los cambios en la tabla
+            } else {
+                // Mostrar un mensaje de error
+                alert('Error al agregar los datos');
+            }
         });
-    });  
+    });
+});
 
 </script>
 

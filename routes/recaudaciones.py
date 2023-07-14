@@ -129,6 +129,27 @@ def buscar_nroRecibo():
         flash('Número de recibo no encontrado', 'error')
         return redirect(url_for('recaudaciones'))
 
+@bp.route('/editar/<int:id_recaudacion>', methods=['GET', 'POST'])
+def editar_recaudacion(id_recaudacion):
+    recaudacion = Recaudacion.query.get(id_recaudacion)
+
+    if request.method == 'POST':
+        # Obtener los datos actualizados del formulario
+        # y actualizar la recaudación en la base de datos
+        
+        recaudacion.fecha_operacion = request.form['fecha-operacion-input']       
+        recaudacion.id_recaudacion_estado = request.form['EstadoR-input']        
+        recaudacion.observacion = request.form['observacion-input']
+
+        # Guardar los cambios en la base de datos
+        db.session.commit()
+
+        # Redirigir a la página principal de recaudaciones
+        return redirect(url_for('recaudaciones.recaudaciones'))
+
+    # Renderizar la plantilla de edición con los datos de la recaudación
+    return rt("editar_recaudacion.html", recaudacion=recaudacion)
+
 @bp.route('/eliminar/<int:id_recaudacion>', methods=['GET', 'POST'])
 def eliminar_recaudacion(id_recaudacion):
     recaudacion = Recaudacion.query.get(id_recaudacion)
@@ -143,3 +164,43 @@ def eliminar_recaudacion(id_recaudacion):
 
     # Renderizar la plantilla de confirmación de eliminación
     return rt("eliminar_recaudacion.html", recaudacion=recaudacion)
+
+@bp.route('/agregar', methods=['POST'])
+def agregar_datos():
+    num_cuenta = request.form['num_cuenta']
+    num_recibo = request.form['num_recibo']
+    num_cuentaPredio = request.form['num_cuentaPredio']
+    # Obtener los datos enviados desde el formulario
+    n_operacion = request.form['n_operacion']
+    fecha_operacion = request.form['fech_operacion']
+    tipo_moneda = request.form['tipo_moneda']
+    importe = request.form['importe']
+    id_recaudacion_estado = request.form['id_recaudacion_estado']
+    observacion= request.form['observacion']
+
+    cuenta = Cuenta.query.filter_by(ncuenta=num_cuenta).first()
+    recibo = MantRecibo.query.filter_by( n_recibo=num_recibo).first()
+    cuentaPredio = CuentaPredio.query.filter_by(ncuenta=num_cuentaPredio).first()
+    # Crear un nuevo o
+    # bjeto en la base de datos con los datos proporcionados
+    recaudacion = Recaudacion(
+        id_cuenta=cuenta.id_cuenta,
+        id_mant_recibo=recibo.id_mant_recibo ,
+        n_operacion=n_operacion, 
+        fecha_operacion=fecha_operacion,
+        id_tipo_moneda=tipo_moneda,
+        importe=importe,
+        id_recaudacion_estado=id_recaudacion_estado,
+        id_cuenta_predio=cuentaPredio.id_cuenta_predio,
+        observacion=observacion
+    )
+    db.session.add(recaudacion)
+    db.session.commit()
+    
+    #Devolver una respuesta de éxito al cliente
+
+    response = {
+        'success': True,
+        'message': 'Datos agregados correctamente'
+    }
+    return jsonify(response)

@@ -8,6 +8,7 @@ class Recaudacion(db.Model):
     fecha_operacion= db.Column(db.Date)
     importe = db.Column(db.DECIMAL)
     id_tipo_moneda = db.Column(db.Integer, db.ForeignKey('tipo_moneda.id_tipo_moneda'))
+    id_recaudacion_estado = db.Column(db.Integer)
     
     id_cuenta_predio = db.Column(db.Integer, db.ForeignKey('cuenta_predio.id_cuenta_predio'))
     observacion = db.Column(db.String(100))
@@ -15,6 +16,7 @@ class Recaudacion(db.Model):
     cuenta = db.relationship('Cuenta', backref='recaudacion')
     mant_recibo = db.relationship('MantRecibo', backref='recaudacion')
     tipo_moneda = db.relationship('TipoMoneda', backref='recaudacion')
+    #recaudacion_estado = db.relationship('EstadoRecaudacion', backref='recaudacion')
    
     cuenta_predio = db.relationship('CuentaPredio', backref='recaudacion')      
     
@@ -26,6 +28,6 @@ class Recaudacion(db.Model):
         self.fecha_operacion= fecha_operacion
         self.id_tipo_moneda = id_tipo_moneda
         self.importe = importe
-       
+        self.id_recaudacion_estado = id_recaudacion_estado
         self.id_cuenta_predio = id_cuenta_predio    
         self.observacion = observacion

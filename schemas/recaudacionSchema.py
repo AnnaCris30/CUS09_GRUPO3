@@ -14,12 +14,14 @@ class RecaudacionSchema(Schema):
     id_tipo_moneda  = fields.Integer()
     fecha_operacion = fields.Date()
     importe = fields.Integer()
+    id_recaudacion_estado = fields.Integer()
     
     id_cuenta_predio = fields.Integer()
     observacion = fields.String()
 
     cuenta = fields.Nested(CuentaSchema)
     tipo_moneda = fields.Nested(TipoMonedaSchema)
+    #recaudacion_estado = fields.Nested(EstadoRecaudacionSchema)
    
     mant_recibo = fields.Nested(MantReciboSchema) 
     cuenta_predio = fields.Nested(CuentaPredioSchema)
